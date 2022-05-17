@@ -1,8 +1,13 @@
 import Web3 from "web3";
 
 console.log("start subscriptions");
-// const web3 = new Web3("wss://matic-testnet-archive-ws.bwarelabs.com");
-const web3 = new Web3("wss://smartbch.regtest.actorforth.org/ws/");
+const web3 = new Web3("wss://matic-testnet-archive-ws.bwarelabs.com");
+// const web3 = new Web3("wss://smartbch.regtest.actorforth.org/ws/");
+// const web3socket = new Web3(
+//   new Web3.providers.WebsocketProvider(
+//     "wss://smartbch.regtest.actorforth.org/ws/"
+//   )
+// );
 
 const contract = new web3.eth.Contract(
   [
@@ -357,13 +362,12 @@ const contract = new web3.eth.Contract(
 );
 
 console.log("option", contract.options.address);
+
 const subscription = web3.eth.subscribe(
-  "logs",
-  {
-    address: contract.options.address,
-  },
+  "pendingTransactions",
   function (error, result) {
     if (!error) {
+      //   console.log("hello");
       console.log(result);
 
       return;
@@ -372,3 +376,4 @@ const subscription = web3.eth.subscribe(
     console.error(error);
   }
 );
+console.log("subs", subscription);
