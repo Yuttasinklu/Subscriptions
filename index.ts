@@ -1,14 +1,17 @@
 import Web3 from "web3";
 
 console.log("start subscriptions");
-const web3 = new Web3("wss://matic-testnet-archive-ws.bwarelabs.com");
-// const web3 = new Web3("wss://smartbch.regtest.actorforth.org/ws/");
+// const web3 = new Web3("wss://matic-testnet-archive-ws.bwarelabs.com");
+const web3 = new Web3("wss://smartbch.regtest.actorforth.org/ws/");
 // const web3 = new Web3(
 //   new Web3.providers.WebsocketProvider(
-//     "wss://smartbch.regtest.actorforth.org/ws/"
+//     "wss://rpc-mainnet.smartbch.org/ws/"
+//     // "wss://matic-testnet-archive-ws.bwarelabs.com"
+//     // "wss://smartbch.regtest.actorforth.org/ws/"
 //   )
 // );
-
+// const web3 = new Web3("wss://smartbch.devops.cash/mainnet/ws/");
+//
 const contract = new web3.eth.Contract(
   [
     { name: "AuctionPaused", inputs: [], anonymous: false, type: "event" },
@@ -367,6 +370,8 @@ const subscription = web3.eth.subscribe(
   "newBlockHeaders",
   function (error, result) {
     if (!error) {
+      console.log(new Date());
+
       //   console.log("hello");
       console.log(result);
 
