@@ -371,7 +371,10 @@ const subscription = web3.eth.subscribe(
   function (error, result) {
     if (!error) {
       console.log(new Date());
-
+      // const ele = document.getElementById("item");
+      // console.log(ele);
+      document.getElementById("item").innerHTML =
+        "block number : " + result.number;
       //   console.log("hello");
       console.log(result);
 
